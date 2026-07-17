@@ -3,8 +3,8 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests', // Updated test directory
   timeout: 60000, // Increased timeout for each test
-  retries: 1, // Number of retries for failed tests
-  workers: process.env.CI ? 2 : undefined, // Number of parallel workers (default is based on CPU cores)
+  retries: process.env.CI ? 2 : 1, // Number of retries for failed tests
+  workers: process.env.CI ? 1 : 4,
   reporter: [
     ['html', { open: 'never' }],
     ['allure-playwright']
