@@ -1,13 +1,7 @@
-import { test, expect } from '@playwright/test';
-import LoginPage from '../../../pages/LoginPage';
-import SignUpPage from '../../../pages/SignUpPage';
-import HomePage from '../../../pages/HomePage';
+import { test, expect } from '../../../fixtures/pageFixtures';
 
 test.describe('Registration Page', () => {
-    test('TC01: Verify Registration, login and delete functionality', async ({ page }) => {
-        const loginPage = new LoginPage(page);
-        const signupPage = new SignUpPage(page);
-        const homePage = new HomePage(page);
+    test('TC01: Verify Registration, login and delete functionality', async ({ loginPage, signUpPage, homePage }) => {
 
         // Generate a unique email ID in the format hulk+date+timestamp@gmail.com
         const date = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
@@ -18,8 +12,8 @@ test.describe('Registration Page', () => {
 
         await loginPage.navigateToLoginPage();
         await loginPage.signUp(name, email);
-        await signupPage.verifySignUpPageWithExpectedDetails(name,email);
-        await signupPage.fillRegistrationForm({
+        await signUpPage.verifySignUpPageWithExpectedDetails(name,email);
+        await signUpPage.fillRegistrationForm({
             gender: 'Mr.',
             password: password,
             day: '10',
@@ -36,7 +30,7 @@ test.describe('Registration Page', () => {
             zipcode: '500084',
             mobileNumber: '1234567890',
         });
-        await signupPage.continueShopping();
+        await signUpPage.continueShopping();
         await homePage.verifyUserName(name);
         //delete created account and confirm URL
         await homePage.deleteAccount();

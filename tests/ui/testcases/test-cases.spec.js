@@ -1,11 +1,9 @@
-import {test,expect} from '@playwright/test'
-import TestCases from '../../../pages/TestCasePage'
+import { test, expect } from '../../../fixtures/pageFixtures';
 
 test.describe('Test Cases Page',()=>{
-    test('TC07: Verify Test Cases Page',async({page})=>{
-        const testcases = new TestCases(page)
+    test('TC07: Verify Test Cases Page',async({testCases})=>{
         //navigate to test cases page and assert
-        await testcases.goToTestCases()
+        await testCases.goToTestCases()
 
     })
 })

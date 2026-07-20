@@ -1,4 +1,5 @@
 import { defineConfig } from '@playwright/test';
+import config from './config/index.js';
 
 export default defineConfig({
   testDir: './tests',
@@ -12,13 +13,13 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL: 'https://automationexercise.com',
-    headless: true,
+    baseURL: config.baseURL,
+    headless: config.headless,
     viewport: { width: 1280, height: 720 },
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
     actionTimeout: 10000,
-    navigationTimeout: 30000,
+    navigationTimeout: config.timeout,
   },
 });
